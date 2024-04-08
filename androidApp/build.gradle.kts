@@ -25,8 +25,11 @@ android {
         }
     }
     buildTypes {
-        getByName("release") {
+        getByName("debug") {
             isMinifyEnabled = false
+        }
+        getByName("release") {
+            isMinifyEnabled = true
         }
     }
     compileOptions {
@@ -34,7 +37,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 }
 
@@ -44,7 +47,6 @@ dependencies {
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.material3)
     implementation(libs.androidx.activity.compose)
-    implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.7")
 
     debugImplementation(libs.compose.ui.tooling)
 }

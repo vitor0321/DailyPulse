@@ -7,7 +7,7 @@ kotlin {
     androidTarget {
         compilations.all {
             kotlinOptions {
-                jvmTarget = "1.8"
+                jvmTarget = JavaVersion.VERSION_1_8.toString()
             }
         }
     }
@@ -24,8 +24,18 @@ kotlin {
     }
 
     sourceSets {
+        androidMain.dependencies {
+            implementation(libs.androidx.lifecycle.viewmodel.ktx)
+        }
         commonMain.dependencies {
-            //put your multiplatform dependencies here
+            api(libs.kotlinx.collections.immutable)
+            implementation(libs.kotlinx.coroutines.core)
+        }
+        iosMain.dependencies {
+
+        }
+        nativeMain.dependencies {
+
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

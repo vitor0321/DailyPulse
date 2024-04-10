@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopazTopAppBar(
+public fun TopazTopAppBar(
     modifier: Modifier = Modifier,
     title: String
 ) {

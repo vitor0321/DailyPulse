@@ -11,7 +11,7 @@ import com.walcker.dailypulse.android.topazDesigner.tokens.TopazSpacerOrientatio
 import com.walcker.dailypulse.android.topazDesigner.tokens.TopazSpacerSize
 
 @Composable
-fun TopazHorizontalSpacer(
+public fun TopazHorizontalSpacer(
     modifier: Modifier = Modifier,
     size: TopazSpacerSize = TopazSpacerSize.Small,
 ) {
@@ -23,7 +23,7 @@ fun TopazHorizontalSpacer(
 }
 
 @Composable
-fun TopazVerticalSpacer(
+public fun TopazVerticalSpacer(
     modifier: Modifier = Modifier,
     size: TopazSpacerSize = TopazSpacerSize.Small,
 ) {

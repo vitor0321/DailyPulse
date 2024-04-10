@@ -17,11 +17,11 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
-import com.walcker.dailypulse.android.topazDesigner.components.TopazError
+import com.walcker.dailypulse.android.topazDesigner.components.TopazAsyncImage
 import com.walcker.dailypulse.android.topazDesigner.components.TopazDividerVertical
-import com.walcker.dailypulse.android.topazDesigner.components.TopazLoading
+import com.walcker.dailypulse.android.topazDesigner.components.TopazError
 import com.walcker.dailypulse.android.topazDesigner.components.TopazTopAppBar
+import com.walcker.dailypulse.android.topazDesigner.components.loading.TopazCircularProgress
 import com.walcker.dailypulse.android.topazDesigner.tokens.TopazDividerSize
 import com.walcker.dailypulse.articles.Article
 import com.walcker.dailypulse.articles.ArticlesViewModel
@@ -36,7 +36,7 @@ internal fun ArticlesScreen(
     Column {
         TopazTopAppBar(title = "Articles")
         if (articlesState.loading)
-            TopazLoading()
+            TopazCircularProgress()
         articlesState.error?.let { message ->
             TopazError(message = message)
         }
@@ -65,11 +65,10 @@ private fun ArticleItemView(article: Article) {
             .fillMaxWidth()
             .padding(16.dp)
     ) {
-        AsyncImage(
-            model = article.imageUrl,
-            contentDescription = null,
-        )
+        TopazAsyncImage(image = article.imageUrl)
+
         TopazDividerVertical()
+
         Text(
             text = article.title,
             style = TextStyle(
@@ -77,14 +76,19 @@ private fun ArticleItemView(article: Article) {
                 fontSize = 22.sp
             )
         )
+
         TopazDividerVertical(size = TopazDividerSize.Medium)
+
         Text(text = article.description)
+
         TopazDividerVertical()
+
         Text(
             modifier = Modifier.align(Alignment.End),
             text = article.date,
             style = TextStyle(color = Color.Gray)
         )
+
         TopazDividerVertical()
     }
 }

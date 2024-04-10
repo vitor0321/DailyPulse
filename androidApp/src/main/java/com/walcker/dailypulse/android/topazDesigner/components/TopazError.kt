@@ -12,7 +12,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun TopazError(
+public fun TopazError(
     modifier: Modifier = Modifier,
     title: String? = null,
     message: String,

@@ -13,7 +13,7 @@ import com.walcker.dailypulse.android.topazDesigner.tokens.TopazDividerSize
 import com.walcker.dailypulse.android.topazDesigner.tokens.TopazDividerTokens
 
 @Composable
-fun TopazDividerHorizontal(
+public fun TopazDividerHorizontal(
     modifier: Modifier = Modifier,
     size: TopazDividerSize = TopazDividerSize.Small,
 ) {
@@ -25,7 +25,7 @@ fun TopazDividerHorizontal(
 }
 
 @Composable
-fun TopazDividerVertical(
+public fun TopazDividerVertical(
     modifier: Modifier = Modifier,
     size: TopazDividerSize = TopazDividerSize.Small,
 ) {

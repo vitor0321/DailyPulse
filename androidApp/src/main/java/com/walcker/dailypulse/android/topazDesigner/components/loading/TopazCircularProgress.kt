@@ -1,4 +1,4 @@
-package com.walcker.dailypulse.android.topazDesigner.components
+package com.walcker.dailypulse.android.topazDesigner.components.loading
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import com.walcker.dailypulse.android.topazDesigner.tokens.CircularStroke
 
 @Composable
-fun TopazLoading(
+public fun TopazCircularProgress(
     modifier: Modifier = Modifier,
     stroke: CircularStroke = CircularStroke.Medium
 ) {

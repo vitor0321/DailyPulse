@@ -17,16 +17,18 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.walcker.dailypulse.android.topazDesigner.components.TopazAsyncImage
-import com.walcker.dailypulse.android.topazDesigner.components.TopazDividerVertical
-import com.walcker.dailypulse.android.topazDesigner.components.TopazError
-import com.walcker.dailypulse.android.topazDesigner.components.TopazTopAppBar
-import com.walcker.dailypulse.android.topazDesigner.components.loading.TopazCircularProgress
-import com.walcker.dailypulse.android.topazDesigner.tokens.TopazDividerSize
 import com.walcker.dailypulse.articles.Article
 import com.walcker.dailypulse.articles.ArticlesViewModel
+import com.walcker.topaz.ExperimentalTopazComposeLibraryApi
+import com.walcker.topaz.components.TopazAsyncImage
+import com.walcker.topaz.components.TopazDividerVertical
+import com.walcker.topaz.components.TopazError
+import com.walcker.topaz.components.TopazTopAppBar
+import com.walcker.topaz.components.loading.TopazCircularProgress
+import com.walcker.topaz.tokens.TopazDividerSize
 import kotlinx.collections.immutable.ImmutableList
 
+@OptIn(ExperimentalTopazComposeLibraryApi::class)
 @Composable
 internal fun ArticlesScreen(
     articlesViewModel: ArticlesViewModel,
@@ -58,6 +60,7 @@ private fun ArticlesListView(articles: ImmutableList<Article>) {
     }
 }
 
+@OptIn(ExperimentalTopazComposeLibraryApi::class)
 @Composable
 private fun ArticleItemView(article: Article) {
     Column(

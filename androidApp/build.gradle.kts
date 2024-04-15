@@ -51,6 +51,6 @@ dependencies {
     implementation(libs.androidx.material)
     implementation(libs.coil.compose)
     implementation(libs.coil.svg)
-
+    implementation("com.walcker.compose.ui:topaz:0.0.1")
     debugImplementation(libs.compose.ui.tooling)
 }

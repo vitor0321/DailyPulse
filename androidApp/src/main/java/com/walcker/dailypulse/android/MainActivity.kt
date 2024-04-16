@@ -29,7 +29,9 @@ private fun MainActivityScreen(articlesViewModel: ArticlesViewModel) {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            ArticlesScreen(articlesViewModel = articlesViewModel)
+            AppScaffold(
+                articlesViewModel = articlesViewModel
+            )
         }
     }
 }
@@ -38,6 +40,6 @@ private fun MainActivityScreen(articlesViewModel: ArticlesViewModel) {
 @Composable
 fun DefaultPreview() {
     MyApplicationTheme {
-        MainActivityScreen(articlesViewModel= ArticlesViewModel())
+        MainActivityScreen(articlesViewModel = ArticlesViewModel())
     }
 }

@@ -6,6 +6,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -21,22 +25,33 @@ import com.walcker.dailypulse.articles.Article
 import com.walcker.dailypulse.articles.ArticlesViewModel
 import com.walcker.topaz.ExperimentalTopazComposeLibraryApi
 import com.walcker.topaz.components.TopazAsyncImage
-import com.walcker.topaz.components.TopazDividerVertical
 import com.walcker.topaz.components.TopazError
 import com.walcker.topaz.components.TopazTopAppBar
+import com.walcker.topaz.components.TopazVerticalSpacer
 import com.walcker.topaz.components.loading.TopazCircularProgress
-import com.walcker.topaz.tokens.TopazDividerSize
+import com.walcker.topaz.tokens.TopazSpacerSize
 import kotlinx.collections.immutable.ImmutableList
 
 @OptIn(ExperimentalTopazComposeLibraryApi::class)
 @Composable
 internal fun ArticlesScreen(
+    onAboutButtonClick: () -> Unit,
     articlesViewModel: ArticlesViewModel,
 ) {
     val articlesState by articlesViewModel.articlesState.collectAsState()
 
     Column {
-        TopazTopAppBar(title = "Articles")
+        TopazTopAppBar(
+            title = "Articles",
+            actions = {
+                IconButton(onClick = onAboutButtonClick) {
+                    Icon(
+                        imageVector = Icons.Outlined.Info,
+                        contentDescription = "About Device Button"
+                    )
+                }
+            }
+        )
         if (articlesState.loading)
             TopazCircularProgress()
         articlesState.error?.let { message ->
@@ -70,7 +85,7 @@ private fun ArticleItemView(article: Article) {
     ) {
         TopazAsyncImage(image = article.imageUrl)
 
-        TopazDividerVertical()
+        TopazVerticalSpacer()
 
         Text(
             text = article.title,
@@ -80,11 +95,11 @@ private fun ArticleItemView(article: Article) {
             )
         )
 
-        TopazDividerVertical(size = TopazDividerSize.Medium)
+        TopazVerticalSpacer(size = TopazSpacerSize.Medium)
 
-        Text(text = article.description)
+        Text(text = article.subTitle)
 
-        TopazDividerVertical()
+        TopazVerticalSpacer()
 
         Text(
             modifier = Modifier.align(Alignment.End),
@@ -92,6 +107,6 @@ private fun ArticleItemView(article: Article) {
             style = TextStyle(color = Color.Gray)
         )
 
-        TopazDividerVertical()
+        TopazVerticalSpacer()
     }
 }

@@ -16,7 +16,7 @@ extension ArticlesScreen {
         let articlesViewModel: ArticlesViewModel
         
         init() {
-            articlesViewModel = ArticlesViewModel()
+            articlesViewModel = ArticlesInjector().articlesViewModel
             articlesState = articlesViewModel.articlesState.value
         }
         
@@ -76,21 +76,52 @@ struct ArticleItemView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8){
-            AsyncImage(url: URL(string: article.imageUrl)) { phase in
-                if phase.image != nil {
-                    phase.image!
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                } else if phase.error != nil {
-                    Text("Image Load Error")
-                } else {
-                    ProgressView()
+            if let imageUrl = article.imageUrl, let url = URL(string: imageUrl) {
+                AsyncImage(url: url) { phase in
+                    switch phase {
+                    case .empty:
+                        VStack {
+                            HStack {
+                                ProgressView().progressViewStyle(CircularProgressViewStyle())
+                            }
+                        }
+                        .frame(maxWidth: .infinity, minHeight: 190)
+                        
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    
+                    case .failure(_):
+                        Image("errorImage")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(maxWidth: .infinity, minHeight: 190)
+                    @unknown default:
+                        VStack {
+                            HStack {
+                                Text("Insepct wrong! try again")
+                            }
+                        }
+                        .frame(maxWidth: .infinity, minHeight: 190)
+                    }
+                    
                 }
+            } else {
+                Image("errorImage")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(maxWidth: .infinity, minHeight: 190)
             }
+            
             Text(article.title)
                 .font(.title)
                 .fontWeight(.bold)
-            Text(article.subTitle)
+            
+            if let subTitle = article.subTitle {
+                Text(subTitle)
+            }
+        
             Text(article.date)
                 .frame(
                     maxWidth: .infinity,

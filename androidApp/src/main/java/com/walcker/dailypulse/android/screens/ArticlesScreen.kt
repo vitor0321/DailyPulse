@@ -21,8 +21,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.walcker.dailypulse.articles.Article
-import com.walcker.dailypulse.articles.ArticlesViewModel
+import com.walcker.dailypulse.articles.domain.models.ui.Article
+import com.walcker.dailypulse.articles.ui.ArticlesViewModel
 import com.walcker.topaz.ExperimentalTopazComposeLibraryApi
 import com.walcker.topaz.components.TopazAsyncImage
 import com.walcker.topaz.components.TopazError
@@ -31,12 +31,13 @@ import com.walcker.topaz.components.TopazVerticalSpacer
 import com.walcker.topaz.components.loading.TopazCircularProgress
 import com.walcker.topaz.tokens.TopazSpacerSize
 import kotlinx.collections.immutable.ImmutableList
+import org.koin.androidx.compose.getViewModel
 
 @OptIn(ExperimentalTopazComposeLibraryApi::class)
 @Composable
 internal fun ArticlesScreen(
+    articlesViewModel: ArticlesViewModel = getViewModel(),
     onAboutButtonClick: () -> Unit,
-    articlesViewModel: ArticlesViewModel,
 ) {
     val articlesState by articlesViewModel.articlesState.collectAsState()
 
@@ -97,7 +98,9 @@ private fun ArticleItemView(article: Article) {
 
         TopazVerticalSpacer(size = TopazSpacerSize.Medium)
 
-        Text(text = article.subTitle)
+        article.subTitle?.let {
+            Text(text = it)
+        }
 
         TopazVerticalSpacer()
 

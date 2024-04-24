@@ -91,7 +91,7 @@ struct ArticleItemView: View {
                         image
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                    
+                        
                     case .failure(_):
                         Image("errorImage")
                             .resizable()
